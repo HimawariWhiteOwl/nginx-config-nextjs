@@ -1,0 +1,33 @@
+npm install
+sudo nano package.json
+========= Edit =======
+"dev": "next dev -H 0.0.0.0 -p 4100",
+"start": "next start -p 9000",
+
+====== Run Check Project =======
+npm run dev
+
+CTRL+C (cancel stop project dev)
+
+====== Build Project NextJS ======
+npm run build
+
+======== Deploy NextJS to PM2 ==========
+pm2 start "npm run start" --name NextProject
+
+======== Config Nginx ========
+sudo nano /etc/nginx/sites-available/DeployNext
+Copy Setting DeployNext to this file
+Close (CTRL+X => Y => Enter)
+
+======== Enabled Nginx ========
+ln -s /etc/nginx/sites-available/DeployNext /etc/nginx/sites-enabled/
+
+======== Test Check Nginx ========
+nginx -t
+
+
+======== Restart Nginx ========
+sudo systemctl restart nginx
+
+=========== Complete!! ==========
